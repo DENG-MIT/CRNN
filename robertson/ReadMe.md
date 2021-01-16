@@ -1,0 +1,3 @@
+# Robertson's Problem
+
+This example demonstrate the preliminary results on learning CRNN for systems with strong stiffness. Robertson's problem is a classical stiff chemical kinetic problems widely adopted to test stiff ODE solvers. The details of Robertson's problem and the inttroductions to stiffness can be found in https://arxiv.org/abs/2011.04520 and https://diffeq.sciml.ai/stable/tutorials/advanced_ode_example/.
