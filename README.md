@@ -21,4 +21,4 @@ This repo provides the case studies presented in the orginal CRNN paper as well 
 Inside each folder, such as case1/2/3, you will find at least two Julia codes. One for traing and the other one for weight pruning. Those two files are basically identical, except that the weight pruning includes a function to pruning the CRNN weights to further encourage sparsity.
 
 # Cite
-Ji, Weiqi, and Sili Deng. "Autonomous Discovery of Unknown Reaction Pathways from Data by Chemical Reaction Neural Network." The Journal of Physical Chemistry A, (2021), doi: [10.1021/acs.jpca.0c09316](https://pubs.acs.org/doi/full/10.1021/acs.jpca.0c09316), [arXiv](https://arxiv.org/abs/2002.09062)
+Ji, Weiqi, and Deng, Sili. "Autonomous Discovery of Unknown Reaction Pathways from Data by Chemical Reaction Neural Network." The Journal of Physical Chemistry A, (2021), doi: [10.1021/acs.jpca.0c09316](https://pubs.acs.org/doi/full/10.1021/acs.jpca.0c09316), [arXiv](https://arxiv.org/abs/2002.09062)
