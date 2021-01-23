@@ -12,9 +12,11 @@ You can find the common questions regarding CRNN in the [FAQs](https://github.co
 
 This repo provides the case studies presented in the orginal CRNN paper as well as ongoing prelimanry results on other systems. Currently, we are actively working on the following systems:
 
-* Biomass pyrolysis kinetics for wildland fire modeling
-* Systems with strong stiffness, you can find preliminary results on the Robertson's problem in this repo
-* Cell signaling pathways for quantitative modeling drug effects
+* Biomass pyrolysis kinetics for wildland fire modeling (to be announced)
+* Cell signaling pathways for quantitative modeling drug effects (to be announced)
+* Gene regulatory network (preliminary results in this repo)
+* Oscillations in yeast glycolysis which is a standard test case for biochemical dynamics inference (to be announced)
+* Systems with strong stiffness, you can find preliminary results on the Robertson's problem in this repo (preliminary results in this repo)
 
 Inside each folder, such as case1/2/3, you will find at least two Julia codes. One for traing and the other one for weight pruning. Those two files are basically identical, except that the weight pruning includes a function to pruning the CRNN weights to further encourage sparsity.
 
