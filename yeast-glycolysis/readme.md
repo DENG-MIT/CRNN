@@ -31,7 +31,7 @@ end
 
 in which `u` is the 7 species, and `rep(u)` refers to the approximated hidden species.
 
-We randomly generate 30 initial conditions following the work of Daniels and Nemenman 2015. They are spilt into training and validation datasets by the rate of 20:10.
+We randomly generate 30 initial conditions following the work of Daniels and Nemenman 2015. They are spilt into training and validation datasets by the ratio of 20:10.
 
 Results for one of the training datasets
 ![equations](./figs/i_exp_1.png)
