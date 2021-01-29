@@ -149,13 +149,18 @@ cbi = function (p, i_exp)
     l_plt = []
     for i = 1:ns
         plt = scatter(tsteps, ode_data[i, :], xscale=:log10,
-                      markercolor=:transparent, label=string("label_", i))
-        plot!(plt, tsteps[1:size(pred)[2]], pred[i, :], xscale=:log10, label=string("pred_", i))
-        xlabel!(plt, "Time [s]")
+                      markercolor=:transparent, label=string("data"))
+        plot!(plt, tsteps[1:size(pred)[2]], pred[i, :], xscale=:log10, label=string("pred"))
         ylabel!(plt, "y$i")
+        if i == ns
+            xlabel!(plt, "Time [s]")
+            plot!(plt, legend=:topleft)
+        else
+            plot!(plt, legend=false)
+        end
         push!(l_plt, plt)
     end
-    plt_all = plot(l_plt..., legend=false, framestyle=:box)
+    plt_all = plot(l_plt..., framestyle=:box, layouts = (ns, 1))
     png(plt_all, string("figs/i_exp_", i_exp))
 
     return false
