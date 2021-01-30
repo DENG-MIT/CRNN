@@ -17,6 +17,7 @@ This repo provides the case studies presented in the orginal CRNN paper as well 
 * Gene regulatory network (preliminary results in this repo)
 * Oscillations in yeast glycolysis (preliminary results in this repo)
 * Systems with strong stiffness (preliminary results on the Robertson's problem in this repo)
+* Gas-phase combustion kinetics (to be announced)
 
 Inside each folder, such as case 1/2/3, you will find at least two Julia codes. One for traing and the other one for weight pruning. Those two files are basically identical, except that the weight pruning includes a function to prune the CRNN weights to further encourage sparsity.
 
