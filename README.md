@@ -30,4 +30,4 @@ Have a look at the code for [case 2](https://github.com/DENG-MIT/CRNN/blob/main/
 * Train CRNN using ADAM
 
 # Cite
-Ji, Weiqi, and Deng, Sili. "Autonomous Discovery of Unknown Reaction Pathways from Data by Chemical Reaction Neural Network." The Journal of Physical Chemistry A, (2021), doi: [10.1021/acs.jpca.0c09316](https://pubs.acs.org/doi/full/10.1021/acs.jpca.0c09316), [arXiv](https://arxiv.org/abs/2002.09062)
+Ji, Weiqi, and Deng, Sili. "Autonomous Discovery of Unknown Reaction Pathways from Data by Chemical Reaction Neural Network." The Journal of Physical Chemistry A, (2021), 125, 4, 1082–1092, doi: [10.1021/acs.jpca.0c09316](https://pubs.acs.org/doi/full/10.1021/acs.jpca.0c09316), [arXiv](https://arxiv.org/abs/2002.09062)
