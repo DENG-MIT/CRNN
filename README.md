@@ -1,6 +1,6 @@
 # CRNN (Chemical Reaction Neural Network)
 
-CRNN is an interpretable neural network architecture for automonously inference chemical reaction pathways in various chemical systems. It is designed based on the following two fundamental physics laws: the Law of Mass Action and Arrhenius Law. It is also possible to incoorperate other physics laws to adapt CRNN to a specific domain.
+CRNN is an interpretable neural network architecture for autonomously inference chemical reaction pathways in various chemical systems. It is designed based on the following two fundamental physics laws: the Law of Mass Action and Arrhenius Law. It is also possible to incorporate other physics laws to adapt CRNN to a specific domain.
 
 <p align="center">
 <img src="./assets/CRNN_TOC.png" width="500">
@@ -10,20 +10,20 @@ You can find the common questions regarding CRNN in the [FAQs](https://github.co
 
 # Structure of this repo
 
-This repo provides the case studies presented in the orginal CRNN paper as well as ongoing prelimanry results on other systems. Currently, we are actively working on the following systems:
+This repo provides the case studies presented in the original CRNN paper as well as ongoing preliminary results on other systems. Currently, we are actively working on the following systems:
 
 * Biomass pyrolysis kinetics for wildland fire modeling (to be announced)
 * Cell signaling pathways for quantitative modeling drug effects (to be announced)
-* Gene regulatory network (preliminary results in this repo)
-* Oscillations in yeast glycolysis (preliminary results in this repo)
-* Systems with strong stiffness (preliminary results on the Robertson's problem in this repo)
-* Gas-phase combustion kinetics (to be announced)
+* Gene regulatory network (preliminary results)
+* Oscillations in yeast glycolysis (preliminary results)
+* Systems with strong stiffness (Robertson's problem)
+* Gas-phase combustion kinetics (`HyChem`)
 
-Inside each folder, such as case 1/2/3, you will find at least two Julia codes. One for traing and the other one for weight pruning. Those two files are basically identical, except that the weight pruning includes a function to prune the CRNN weights to further encourage sparsity.
+Inside each folder, such as case 1/2/3, you will find at least two Julia codes. One for training and the other one for weight pruning. Those two files are identical, except that the weight pruning includes a function to prune the CRNN weights to further encourage sparsity.
 
 # Get Started
 
-Have a look at the code for [case 2](https://github.com/DENG-MIT/CRNN/blob/main/case2/case2.jl). The script consists of following parts:
+Have a look at the code for [case 2](https://github.com/DENG-MIT/CRNN/blob/main/case2/case2.jl). The script consists of the following parts:
 * Hyper-parameter settings
 * Generate synthesized data
 * Define the neural ODE problem
