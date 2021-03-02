@@ -1,4 +1,4 @@
-using DiffEqFlux, OrdinaryDiffEq, Flux, Optim, Plots
+using DiffEqFlux, OrdinaryDiffEq, Flux, Plots
 using DifferentialEquations
 using DiffEqSensitivity
 using Zygote
@@ -6,22 +6,22 @@ using ForwardDiff
 using LinearAlgebra
 using Random
 using Statistics
+using LatinHypercubeSampling
 using ProgressBars, Printf
 using Flux.Optimise: update!
-using Flux.Losses: mae, mse
+using Flux.Losses: mae
 using BSON: @save, @load
-using LatinHypercubeSampling
 
-is_restart = true;
+is_restart = false;
 n_epoch = 1000000;
-n_plot = 10;
+n_plot = 50;
 
 opt = ADAMW(0.005, (0.9, 0.999), 1.f-6);
 datasize = 40;
-batchsize = 16;
+batchsize = 32;
 n_exp_train = 20;
 n_exp_val = 5;
-n_exp = n_exp_train + n_exp_val; 
+n_exp = n_exp_train + n_exp_val;
 noise = 1.f-4;
 ns = 3;
 nr = 6;
@@ -30,27 +30,27 @@ grad_max = 10 ^ (1);
 maxiters = 10000;
 
 # alg = AutoTsit5(Rosenbrock23(autodiff=false));
-alg = Rosenbrock23(autodiff=false);
+alg = Rosenbrock23(autodiff=true);
 atol = [1e-6, 1e-8, 1e-6];
 rtol = [1e-3, 1e-3, 1e-3];
 lb = 1e-8;
-ub = 1.f1;
+ub = 1.e1;
 
 np = nr * (2 * ns + 1) + 1;
-p = (rand(Float32, np) .- 0.5) * 2 * sqrt(6 / (ns + nr));
+p = (rand(Float64, np) .- 0.5) * 2 * sqrt(6 / (ns + nr));
 p[end] = 1.e-1;
 
 # Generate datasets
-u0_list = rand(Float32, (n_exp, ns)) .* 2 .+ 0.5;
+u0_list = rand(Float64, (n_exp, ns)) .* 2 .+ 0.5;
 u0_list[:, 2:2] .= 0 .+ lb;
 u0_list[:, [1, 3]] .= randomLHC(n_exp, 2) ./ n_exp .+ 0.5
 
 tsteps = 10 .^ range(0, 5, length=datasize);
-tspan = Float32[0, tsteps[end]];
+tspan = Float64[0, tsteps[end]];
 t_end = tsteps[end]
 
 k = [4.f-2, 3.f7, 1.f4];
-ode_data_list = zeros(Float32, (n_exp, ns, datasize));
+ode_data_list = zeros(Float64, (n_exp, ns, datasize));
 yscale_list = [];
 
 function trueODEfunc(dydt, y, k, t)
@@ -118,11 +118,12 @@ end
 u0 = u0_list[1, :]
 prob = ODEProblem(crnn, u0, tspan, saveat=tsteps, atol=atol, rtol=rtol)
 
-sense = BacksolveAdjoint(checkpointing=true; autojacvec=false);
+# sense = BacksolveAdjoint(checkpointing=true; autojacvec=false);
+sense = ForwardDiffSensitivity()
 function predict_neuralode(u0, p; sample = datasize)
     global w_in, w_b, w_out = p2vec(p)
-    _prob = remake(prob, tspan=[0, tsteps[sample]])
-    sol = solve(prob, alg, u0=u0, p=p, saveat=tsteps[1:sample], 
+    _prob = remake(prob, u0=u0, p=p, tspan=[0, tsteps[sample]])
+    sol = solve(_prob, alg, saveat=tsteps[1:sample],
                 sensalg=sense, verbose=false, maxiters=maxiters)
     pred = Array(sol)
 
@@ -161,7 +162,7 @@ cbi = function (p, i_exp)
         push!(l_plt, plt)
     end
     plt_all = plot(l_plt..., framestyle=:box, layouts = (ns, 1))
-    png(plt_all, string("figs/i_exp_", i_exp))
+    png(plt_all, string("figs/conditions/i_exp_", i_exp))
 
     return false
 end
@@ -180,7 +181,8 @@ cb = function (p, loss_train, loss_val, g_norm)
         display_p(p)
 
         l_exp = randperm(n_exp)[1:1]
-        println("update plot for ", l_exp)
+        println("plot for $l_exp")
+        println("\n")
         for i_exp in l_exp
             cbi(p, i_exp)
         end
@@ -192,7 +194,7 @@ cb = function (p, loss_train, loss_val, g_norm)
         xlabel!(plt_grad, "Epoch")
         ylabel!(plt_loss, "Loss")
         ylabel!(plt_grad, "Grad Norm")
-        ylims!(plt_loss, (-Inf, 1))
+        # ylims!(plt_loss, (-Inf, 1))
         plt_all = plot([plt_loss, plt_grad]..., legend=:top)
         png(plt_all, "figs/loss_grad")
 
@@ -208,8 +210,8 @@ if is_restart
 end
 
 epochs = ProgressBar(iter:n_epoch);
-loss_epoch = zeros(Float32, n_exp);
-grad_norm = zeros(Float32, n_exp_train);
+loss_epoch = zeros(Float64, n_exp);
+grad_norm = zeros(Float64, n_exp_train);
 for epoch in epochs
     global p
     for i_exp in randperm(n_exp_train)
@@ -227,11 +229,11 @@ for epoch in epochs
     loss_train = mean(loss_epoch[1:n_exp_train]);
     loss_val = mean(loss_epoch[n_exp_train + 1:end]);
     g_norm = mean(grad_norm)
-    set_description(epochs, string(@sprintf("Loss train %.4e val %.4e gnorm %.4e", loss_train, loss_val, g_norm)))
+    set_description(epochs, string(@sprintf("Loss train %.3e val %.3e gnorm %.3e", loss_train, loss_val, g_norm)))
     cb(p, loss_train, loss_val, g_norm);
 end
 
-@printf("min loss train %.4e val %.4e\n", minimum(l_loss_train), minimum(l_loss_val))
+@printf("min loss train %.3e val %.3e\n", minimum(l_loss_train), minimum(l_loss_val))
 
 for i_exp in 1:n_exp
     cbi(p, i_exp)
