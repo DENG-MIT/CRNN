@@ -12,8 +12,8 @@ You can find the common questions regarding CRNN in the [FAQs](https://github.co
 
 This repo provides the case studies presented in the original CRNN paper as well as ongoing preliminary results on other systems. Currently, we are actively working on the following systems:
 
-* Biomass pyrolysis kinetics for wildland fire modeling (to be announced)
-* Cell signaling pathways for quantitative modeling drug effects (to be announced)
+* [Biomass pyrolysis kinetics](https://github.com/DENG-MIT/CRNN-Pyrolysis)
+* [Cell signaling pathways for quantitative modeling drug effects](https://github.com/jiweiqi/CellBox.jl)
 * Gene regulatory network (preliminary results)
 * Oscillations in yeast glycolysis (preliminary results)
 * Systems with strong stiffness (Robertson's problem)
