@@ -103,7 +103,7 @@ function trueODEfunc(dydt, y, k, t)
 end
 
 # Generate data sets
-u0_list .= 10 .^ (rand(Float32, (n_exp, ns)) * -3);
+u0_list = 10 .^ (rand(Float32, (n_exp, ns)) * -3);
 @. u0_list[[1, 2, end], [3, 5, 7, 9]] .*= 0.f0;
 # @. u0_list[:, [3, 5, 7, 9]] .*= 0.f0;
 # u0_list = rand(Float32, (n_exp, ns));
