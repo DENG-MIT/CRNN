@@ -22,9 +22,9 @@ tstep = 0.1;
 n_exp_train = 20;
 n_exp_test = 10;
 n_exp = n_exp_train + n_exp_test;
-noise = 5.f-2;
+noise = 1.f-3;
 ns = 5;
-nr = 6;
+nr = 8;
 k = [];
 alg = Tsit5();
 atol = 1e-5;
@@ -45,8 +45,8 @@ end
 
 # Generate data sets
 u0_list = rand(Float32, (n_exp, ns));
-u0_list[:, 1:2] .+= 0.5;
-u0_list[:, 3:end] .= 0.0;
+u0_list[:, 1:2] .+= 0.2;
+# u0_list[:, 3:end] .= 0.0;
 tspan = Float32[0.0, datasize * tstep];
 tsteps = range(tspan[1], tspan[2], length=datasize);
 ode_data_list = zeros(Float32, (n_exp, ns, datasize));
@@ -73,6 +73,7 @@ function p2vec(p)
     w_kf = p[1:nr];
     w_kb = w_kf;  # assume Kc = 1
     w_out = reshape(p[nr + 1:end], ns, nr);
+    w_out = clamp.(w_out, -2.5, 2.5)
     return w_kf, w_kb, w_out
 end
 
