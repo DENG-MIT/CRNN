@@ -10,14 +10,15 @@ using Catalyst
 
 Random.seed!(1234);
 
+# TODO: use YAML file for configuration
 # Argments
 is_restart = false;
 p_cutoff = 0.0;
 n_epoch = 1000000;
 n_plot = 100;
 opt = ADAMW(0.001, (0.9, 0.999), 1.f-8);
-datasize = 20;
-tstep = 0.5;
+datasize = 100;
+tstep = 0.1;
 n_exp_train = 20;
 n_exp_test = 10;
 n_exp = n_exp_train + n_exp_test;
@@ -66,12 +67,12 @@ end
 y_std = maximum(hcat(std_list...), dims=2);
 
 
-p = randn(Float32, nr * (ns + 2)) .* 1.f-1;
+p = randn(Float32, nr * (ns + 1)) .* 1.f-1;
 
 function p2vec(p)
     w_kf = p[1:nr];
-    w_kb = p[nr + 1:2 * nr];
-    w_out = reshape(p[2 * nr + 1:end], ns, nr);
+    w_kb = w_kf;  # assume Kc = 1
+    w_out = reshape(p[nr + 1:end], ns, nr);
     return w_kf, w_kb, w_out
 end
 
@@ -131,7 +132,7 @@ cbi = function (p, i_exp)
                       markercolor=:transparent,
                       label="Exp",
                       framestyle=:box)
-        plot!(plt, tsteps, pred[i,:], label="CRNN")
+        plot!(plt, tsteps, pred[i,:], lw=3, label="CRNN")
         plot!(xlabel="Time", ylabel=species[i])
 
         if i == 1
