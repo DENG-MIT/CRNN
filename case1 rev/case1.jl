@@ -16,7 +16,7 @@ is_restart = false;
 p_cutoff = 0.0;
 n_epoch = 1000000;
 n_plot = 100;
-opt = ADAMW(0.001, (0.9, 0.999), 1.f-8);
+opt = ADAMW(0.0001, (0.9, 0.999), 0.0);
 datasize = 100;
 tstep = 0.1;
 n_exp_train = 20;
@@ -24,7 +24,7 @@ n_exp_test = 10;
 n_exp = n_exp_train + n_exp_test;
 noise = 1.f-3;
 ns = 5;
-nr = 8;
+nr = 10;
 k = [];
 alg = Tsit5();
 atol = 1e-5;
@@ -38,8 +38,8 @@ rn = @reaction_network begin
     (1.0, 1.0), A ↔ B
     (1.0, 1.0), B ↔ C
     (1.0, 1.0), C ↔ D
-    (1.0, 1.0), 2A ↔ B + C
-    (1.0, 1.0), 2B ↔ C + D
+    # (1.0, 1.0), 2A ↔ B + C
+    # (1.0, 1.0), 2B ↔ C + D
     (1.0, 1.0), 2C ↔ D + E
 end
 
@@ -67,7 +67,7 @@ end
 y_std = maximum(hcat(std_list...), dims=2);
 
 
-p = randn(Float32, nr * (ns + 1)) .* 1.f-1;
+p = randn(Float32, nr * (ns + 1)) .* 0.5;
 
 function p2vec(p)
     w_kf = p[1:nr];
