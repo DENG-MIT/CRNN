@@ -29,5 +29,7 @@ Have a look at the code for [case 2](https://github.com/DENG-MIT/CRNN/blob/main/
 * Define the neural ODE problem
 * Train CRNN using ADAM
 
+**We strongly recommend using Julia 1.6 with the CRNN code included in this repository. Newer versions may lead to indexing issues and convergence to incorrect mechanisms.**
+
 # Cite
 Ji, Weiqi, and Deng, Sili. "Autonomous Discovery of Unknown Reaction Pathways from Data by Chemical Reaction Neural Network." The Journal of Physical Chemistry A, (2021), 125, 4, 1082–1092, [acs](https://pubs.acs.org/doi/full/10.1021/acs.jpca.0c09316)/[arXiv](https://arxiv.org/abs/2002.09062)
