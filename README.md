@@ -10,16 +10,23 @@ You can find the common questions regarding CRNN in the [FAQs](https://github.co
 
 # Structure of this repo
 
-This repo provides the case studies presented in the original CRNN paper as well as ongoing preliminary results on other systems. Currently, we are actively working on the following systems:
+This repo provides the case studies presented in the original CRNN paper as well as ongoing preliminary results on other systems. Currently, this includes:
 
-* [Biomass pyrolysis kinetics](https://github.com/DENG-MIT/CRNN-Pyrolysis)
-* [Cell signaling pathways for quantitative modeling drug effects](https://github.com/jiweiqi/CellBox.jl)
+* Cases 1-3 ([original CRNN paper](https://pubs.acs.org/doi/full/10.1021/acs.jpca.0c09316))
+* Cathode thermal decomposition modeling ([2023 Journal of Power Sources paper](https://doi.org/10.1016/j.jpowsour.2023.233443))
 * Gene regulatory network (preliminary results)
 * Oscillations in yeast glycolysis (preliminary results)
 * Systems with strong stiffness (Robertson's problem)
 * Gas-phase combustion kinetics (`HyChem`)
 
+Other github repositories containing CRNN materials are:
+
+* [Biomass pyrolysis kinetics](https://github.com/DENG-MIT/CRNN-Pyrolysis), later updated to [this repository](https://github.com/DENG-MIT/Biomass.jl) ([2022 Combustion and Flame paper](https://doi.org/10.1016/j.combustflame.2022.111992))
+* [Cell signaling pathways for quantitative modeling drug effects](https://github.com/jiweiqi/CellBox.jl)
+
 Inside each folder, such as case 1/2/3, you will find at least two Julia codes. One for training and the other one for weight pruning. Those two files are identical, except that the weight pruning includes a function to prune the CRNN weights to further encourage sparsity.
+
+The cathode folder does not contain a weight pruning code. The study in this folder involves parameter optimization with existing knowledge of the mechanism's structure, thus pruning is redundant.
 
 # Get Started
 
@@ -29,7 +36,12 @@ Have a look at the code for [case 2](https://github.com/DENG-MIT/CRNN/blob/main/
 * Define the neural ODE problem
 * Train CRNN using ADAM
 
-**We strongly recommend using Julia 1.6 with the CRNN code included in this repository. Newer versions may lead to indexing issues and convergence to incorrect mechanisms.**
+**We strongly recommend using Julia 1.6 with the CRNN code included in this repository. Newer versions may lead to indexing issues and convergence to incorrect mechanisms. As of the current commit in August 2024, active development of CRNN capabilities is ongoing. If compatibility is required with newer versions of Julia, please reach out to the authors [here](https://deng.mit.edu/people.html).**
 
 # Cite
+**Base CRNN (cases 1-3):**
 Ji, Weiqi, and Deng, Sili. "Autonomous Discovery of Unknown Reaction Pathways from Data by Chemical Reaction Neural Network." The Journal of Physical Chemistry A, (2021), 125, 4, 1082–1092, [acs](https://pubs.acs.org/doi/full/10.1021/acs.jpca.0c09316)/[arXiv](https://arxiv.org/abs/2002.09062)
+**Biomass CRNN (see https://github.com/DENG-MIT/Biomass.jl):**
+Ji, Weiqi, Franz Richter, Michael J. Gollner, and Sili Deng. "Autonomous kinetic modeling of biomass pyrolysis using chemical reaction neural networks." Combustion and Flame 240 (2022) 111992. https://doi.org/10.1016/j.combustflame.2022.111992
+**Cathode thermal decomposition CRNN (cathode folder):**
+Koenig, Benjamin C., Peng Zhao, and Sili Deng. "Accommodating physical reaction schemes in DSC cathode thermal stability analysis using chemical reaction neural networks." Journal of Power Sources 581 (2023) 233443. https://doi.org/10.1016/j.jpowsour.2023.233443, later applied in https://doi.org/10.1016/j.proci.2024.105243 
