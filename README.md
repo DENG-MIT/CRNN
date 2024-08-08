@@ -44,7 +44,7 @@ Ji, Weiqi, and Deng, Sili. "Autonomous Discovery of Unknown Reaction Pathways fr
 
 
 **Cathode thermal decomposition CRNN (cathode folder):**
-Koenig, Benjamin C., Peng Zhao, and Sili Deng. "Accommodating physical reaction schemes in DSC cathode thermal stability analysis using chemical reaction neural networks." Journal of Power Sources 581 (2023) 233443. https://doi.org/10.1016/j.jpowsour.2023.233443, later applied in https://doi.org/10.1016/j.proci.2024.105243 
+Koenig, Benjamin C., Peng Zhao, and Sili Deng. "Accommodating physical reaction schemes in DSC cathode thermal stability analysis using chemical reaction neural networks." Journal of Power Sources 581 (2023) 233443. https://doi.org/10.1016/j.jpowsour.2023.233443, later applied in https://doi.org/10.1016/j.proci.2024.105243 (please note training data in this case is adapted from https://doi.org/10.1016/j.jpowsour.2021.230582).
 
 **Biomass CRNN (see https://github.com/DENG-MIT/Biomass.jl):**
 Ji, Weiqi, Franz Richter, Michael J. Gollner, and Sili Deng. "Autonomous kinetic modeling of biomass pyrolysis using chemical reaction neural networks." Combustion and Flame 240 (2022) 111992. https://doi.org/10.1016/j.combustflame.2022.111992
