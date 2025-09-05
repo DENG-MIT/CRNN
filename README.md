@@ -55,10 +55,6 @@ Have a look at the code for [case 2](https://github.com/DENG-MIT/CRNN/blob/main/
 - B.C. Koenig, H. Chen, Q. Li, P. Zhao, S. Deng, Uncertain lithium-ion cathode kinetic decomposition modeling via Bayesian chemical reaction neural networks, Proceedings of the Combustion Institute 40 (2024) 105243. https://doi.org/10.1016/j.proci.2024.105243
 - B.C. Koenig, P. Zhao, S. Deng, Comprehensive thermal-kinetic uncertainty quantification of lithium-ion battery thermal runaway via bayesian chemical reaction neural networks, Chemical Engineering Journal 507 (2025) 160402. https://doi.org/10.1016/j.cej.2025.160402
 
-=======
-Koenig, Benjamin C., Peng Zhao, and Sili Deng. "Accommodating physical reaction schemes in DSC cathode thermal stability analysis using chemical reaction neural networks." Journal of Power Sources 581 (2023) 233443. https://doi.org/10.1016/j.jpowsour.2023.233443, later applied in https://doi.org/10.1016/j.proci.2024.105243 (please note training data in this case is adapted from https://doi.org/10.1016/j.jpowsour.2021.230582).
->>>>>>> a294e5abf0fdf43db4e60f76c159520206a80465
-
 **Biomass CRNN (see https://github.com/DENG-MIT/Biomass.jl):**
 
 - Ji, Weiqi, Franz Richter, Michael J. Gollner, and Sili Deng. "Autonomous kinetic modeling of biomass pyrolysis using chemical reaction neural networks." Combustion and Flame 240 (2022) 111992. https://doi.org/10.1016/j.combustflame.2022.111992
