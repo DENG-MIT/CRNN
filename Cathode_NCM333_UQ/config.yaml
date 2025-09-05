@@ -1,0 +1,34 @@
+expr_name: 4s8r-01
+is_restart: false
+ns: 3 #c1, c2, c3
+nr: 3 #each of above decomposes into next
+
+lb_clamp: 1.e-16
+lb_abstol: 1.e-12
+n_epoch: 30000
+n_plot: 50
+grad_max: 5.e2
+maxiters: 2500000000
+
+noise_level_noisy_wang: 0.1
+noise_level_synthesize_various: 0.578
+noise_level_zhao_lr_shift: .349
+noise_level_zhao_updown_only: .566
+
+
+adam_lr: 5.e-4
+lr_max: 3.e-5
+lr_min: 1.e-6
+lr_decay: 0.2
+lr_decay_step: 500
+w_decay: 1.e-7
+cathode: 1 #pick the cathode number (1 through 6), 7 is the real data case
+
+num_particles: 100
+n_iter: 25000
+gap: 10
+stepsize: 2.e-4 #this was perhaps 5.e-4 for ncm333? But for 811 with real data I had to turn it down for whatever reason 
+stepsize_decay: 0.95 #the steps need to drop more sharply in order for the loss to not spike and diverge at ~3000 epochs, it seems
+stepsize_decay_epochs: 500
+alpha: 0.6
+cuda_device: 1
