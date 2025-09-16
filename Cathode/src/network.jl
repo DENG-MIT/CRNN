@@ -100,7 +100,6 @@ affect!(integrator) = terminate!(integrator)
 _cb = DiscreteCallback(condition, affect!)
 
 alg = AutoTsit5(TRBDF2(autodiff = true));
-sense = ForwardSensitivity(autojacvec = true)
 function pred_n_ode(p, i_exp, exp_data)
     global beta = l_exp_info[i_exp, :]
     global T0=100+273.15 #degrees K 
@@ -115,7 +114,6 @@ function pred_n_ode(p, i_exp, exp_data)
         tspan = tspan,
         p = p,
         saveat = ts,
-        sensealg = sense,
         maxiters = maxiters,
     )
 

@@ -1,7 +1,6 @@
 using Random, Plots
 using Zygote, ForwardDiff
-using OrdinaryDiffEq, DiffEqSensitivity
-using DiffEqCallbacks
+using OrdinaryDiffEq
 using LinearAlgebra
 using Statistics
 using ProgressBars, Printf
@@ -56,7 +55,7 @@ for i = 1:n_exp
     end
 end
 
-opt = ADAMW(lr_adam, (0.9, 0.999), w_decay);
+opt = AdamW(lr_adam, (0.9, 0.999), w_decay);
 
 if !is_restart
     if ispath(fig_path)

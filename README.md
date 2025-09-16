@@ -12,13 +12,13 @@ You can find the common questions regarding CRNN in the [FAQs](https://github.co
 
 This repo provides the case studies presented in the original CRNN paper as well as ongoing preliminary results on other systems. Currently, this includes:
 
-* Cases 1-3 ([original CRNN paper](https://pubs.acs.org/doi/full/10.1021/acs.jpca.0c09316))
-* Cathode thermal decomposition modeling ([2023 Journal of Power Sources paper](https://doi.org/10.1016/j.jpowsour.2023.233443))
-* Cathode UQ modeling via Bayesian CRNN ([2024 Proceedings of the Combustion Instititue paper](https://doi.org/10.1016/j.proci.2024.105243) and [2025 Chemical Engineering Journal paper](https://doi.org/10.1016/j.cej.2025.160402))
-* Gene regulatory network (preliminary results)
-* Oscillations in yeast glycolysis (preliminary results)
-* Systems with strong stiffness (Robertson's problem)
-* Gas-phase combustion kinetics (`HyChem`)
+* Cases 1-3 ([original CRNN paper](https://pubs.acs.org/doi/full/10.1021/acs.jpca.0c09316)) **requires Julia 1.6
+* Cathode thermal decomposition modeling ([2023 Journal of Power Sources paper](https://doi.org/10.1016/j.jpowsour.2023.233443)) *updated for Julia 1.11.1, Project and Manifest files included
+* Cathode UQ modeling via Bayesian CRNN ([2024 Proceedings of the Combustion Instititue paper](https://doi.org/10.1016/j.proci.2024.105243) and [2025 Chemical Engineering Journal paper](https://doi.org/10.1016/j.cej.2025.160402)) *updated for Julia 1.11.1, Project and Manifest files included
+* Gene regulatory network (preliminary results) **requires Julia 1.6
+* Oscillations in yeast glycolysis (preliminary results) **requires Julia 1.6
+* Systems with strong stiffness (Robertson's problem) **requires Julia 1.6
+* Gas-phase combustion kinetics (`HyChem`) **requires Julia 1.6
 
 Other github repositories containing CRNN materials are:
 
@@ -37,7 +37,7 @@ Have a look at the code for [case 2](https://github.com/DENG-MIT/CRNN/blob/main/
 * Define the neural ODE problem
 * Train CRNN using ADAM
 
-**We strongly recommend using Julia 1.6 with the CRNN code included in this repository. Newer versions may lead to indexing issues and convergence to incorrect mechanisms. As of the current commit in August 2024, active development of CRNN capabilities is ongoing. If compatibility is required with newer versions of Julia, please reach out to the authors [here](https://deng.mit.edu/people.html).**
+**Julia version recommendations are included above for each directory. Incorrect versions may lead to indexing issues and convergence to incorrect mechanisms. As of the current commit in September 2025, active development of CRNN capabilities is ongoing. If compatibility is required with different versions of Julia, please reach out to the authors [here](https://deng.mit.edu/people.html).**
 
 # Cite
 **Base CRNN (cases 1-3):**
@@ -46,7 +46,7 @@ Have a look at the code for [case 2](https://github.com/DENG-MIT/CRNN/blob/main/
 
 
 **Cathode thermal decomposition CRNN (cathode folder):**
-<<<<<<< HEAD
+
 - Koenig, Benjamin C., Peng Zhao, and Sili Deng. "Accommodating physical reaction schemes in DSC cathode thermal stability analysis using chemical reaction neural networks." Journal of Power Sources 581 (2023) 233443. https://doi.org/10.1016/j.jpowsour.2023.233443 
 
 (please note training data in this case is adapted from https://doi.org/10.1016/j.jpowsour.2021.230582).
